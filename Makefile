@@ -61,6 +61,7 @@ build-local:
 version:
 	sh ./version.sh
 
+# https://docs.aws.amazon.com/ko_kr/AmazonECR/latest/userguide/docker-push-ecr-image.html
 .PHONY: release
 release:
 	docker buildx build --platform ${BUILD_PLATFORMS} ./docker/hostmetrics -t ${IMAGE_NAME}:${LATEST_VERSION}-hostmetrics --target prod --push &
@@ -76,6 +77,6 @@ release:
 		--build-arg OTEL_EXPORTER_OTLP_ENDPOINT=${OTEL_EXPORTER_OTLP_ENDPOINT} \
 		--build-arg OTEL_SERVICE_NAME=${OTEL_SERVICE_NAME} \
 		--build-arg PORT=${HYPERDX_APP_PORT} \
-		--build-arg SERVER_URL=${HYPERDX_API_URL}:${HYPERDX_API_PORT} \
+		--build-arg SERVER_URL=${HYPERDX_SERVER_URL}:${HYPERDX_SERVER_PORT} \
 		--platform ${BUILD_PLATFORMS} . -f ./packages/app/Dockerfile -t ${IMAGE_NAME}:${LATEST_VERSION}-app --target prod --push
 

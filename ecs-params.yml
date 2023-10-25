@@ -1,0 +1,26 @@
+version: 1
+task_definition:
+  task_execution_role: ecsTaskExecutionRole
+  ecs_network_mode: awsvpc
+  task_size:
+    mem_limit: 4GB
+    cpu_limit: 2048
+  efs_volumes:
+    - name: efs_config
+      filesystem_id: fs-08937805a03ed86b9
+      root_directory: /hyperdx/efs_config
+    - name: efs_mongodb
+      filesystem_id: fs-08937805a03ed86b9
+      root_directory: /hyperdx/efs_mongodb
+    - name: efs_redis
+      filesystem_id: fs-08937805a03ed86b9
+      root_directory: /hyperdx/efs_redis
+    - name: efs_ingestor_data
+      filesystem_id: fs-08937805a03ed86b9
+      root_directory: /hyperdx/efs_ingestor_data
+    - name: efs_ch_data
+      filesystem_id: fs-08937805a03ed86b9
+      root_directory: /hyperdx/efs_ch_data
+    - name: efs_ch_logs
+      filesystem_id: fs-08937805a03ed86b9
+      root_directory: /hyperdx/efs_ch_logs

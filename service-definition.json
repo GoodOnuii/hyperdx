@@ -1,0 +1,41 @@
+{
+  "cluster": "hyperdx",
+  "serviceName": "hyperdx",
+  "taskDefinition": "hyperdx:22",
+  "loadBalancers": [
+      {
+        "targetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-2:106001896445:targetgroup/hyperdx-app/f430fe3a417fcaf2",
+        "containerName": "app",
+        "containerPort": 8080
+      },
+      {
+        "targetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-2:106001896445:targetgroup/hyperdx-api/32ff165e0b7c73eb",
+        "containerName": "api",
+        "containerPort": 8000
+      },
+      {
+        "targetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-2:106001896445:targetgroup/hyperdx-otel/d74173bf42c28bbf",
+        "containerName": "otel-collector",
+        "containerPort": 4318
+      }
+  ],
+  "desiredCount": 1,
+  "launchType": "FARGATE",
+  "networkConfiguration": {
+      "awsvpcConfiguration": {
+          "subnets": [
+              "subnet-069c8ade3b64c3871",
+              "subnet-037e90a6422c4c4bc",
+              "subnet-0912428dcb2895a65"
+          ],
+          "securityGroups": [
+              "sg-0e4d051afd0d8b230"
+          ],
+          "assignPublicIp": "ENABLED"
+      }
+  },
+  "healthCheckGracePeriodSeconds": 60,
+  "schedulingStrategy": "REPLICA",
+  "enableECSManagedTags": true,
+  "propagateTags": "SERVICE"
+}
