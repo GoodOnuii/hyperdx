@@ -1,7 +1,7 @@
 {
   "cluster": "hyperdx",
   "serviceName": "hyperdx",
-  "taskDefinition": "hyperdx:22",
+  "taskDefinition": "hyperdx:66",
   "loadBalancers": [
       {
         "targetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-2:106001896445:targetgroup/hyperdx-app/f430fe3a417fcaf2",
@@ -24,9 +24,7 @@
   "networkConfiguration": {
       "awsvpcConfiguration": {
           "subnets": [
-              "subnet-069c8ade3b64c3871",
-              "subnet-037e90a6422c4c4bc",
-              "subnet-0912428dcb2895a65"
+              "subnet-069c8ade3b64c3871"
           ],
           "securityGroups": [
               "sg-0e4d051afd0d8b230"

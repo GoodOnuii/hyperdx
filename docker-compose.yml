@@ -3,10 +3,10 @@ version: '3'
 volumes:
   efs_config:
   efs_mongodb:
-  efs_redis:
-  efs_ingestor_data:
   efs_ch_data:
-  efs_ch_logs:
+  # redis:
+  # ch_logs:
+  # ingestor_data:
 
 services:
   miner:
@@ -36,8 +36,8 @@ services:
   ingestor:
     image: ${IMAGE_NAME}:${IMAGE_VERSION}-ingestor
     container_name: hdx-oss-ingestor
-    volumes:
-      - efs_ingestor_data:/var/lib/vector
+    # volumes:
+    #   - ingestor_data:/var/lib/vector
     ports:
       - 8002:8002 # http-generic
       - 8686:8686 # healthcheck
@@ -51,8 +51,8 @@ services:
   redis:
     image: redis:7.2.2-alpine
     container_name: hdx-oss-redis
-    volumes:
-      - efs_redis:/data
+    # volumes:
+    #   - redis:/data
     ports:
       - 6379:6379
     networks:
@@ -197,7 +197,7 @@ services:
     volumes:
       - efs_config:/etc/clickhouse-server
       - efs_ch_data:/var/lib/clickhouse
-      - efs_ch_logs:/var/log/clickhouse-server
+      # - ch_logs:/var/log/clickhouse-server
     restart: on-failure
     networks:
       - internal
